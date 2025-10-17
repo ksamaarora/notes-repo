@@ -1,0 +1,16 @@
+Part 6 Git Remove File 
+
+Now continuing,
+If you want to add multiple files git add . command 
+
+then git commmit -m "your message"
+
+Say you want to remove a file 
+just delete it from vs code, but is your job really done?
+
+No it is deleted from your working directory 
+
+delete from git 
+git rm --cached yourfilename.txt
+and now if u delete from vs code, it would be actually deleted from git 
+
