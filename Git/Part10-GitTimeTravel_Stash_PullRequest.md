@@ -1,74 +1,173 @@
-Part 10 
+## Part 10 – Git Time Travel, Stash, Fork & Pull Request
 
-> Git Time tarvel 
+### Git Time Travel
 
-Say u want to move to some previous commit 
+Git allows you to **move through history** — to go back to any previous commit or version of your project.
+Every commit in Git is like a snapshot in time, identified by a unique **commit hash (checksum)** such as `00bb7c88f1c6fb551fd495b4682e82b9c374cd01`.
 
-So what i do is first i create a new branch say liteversion 
+If you want to explore or test an older version without disturbing your current code, first create a new branch:
+
+```bash
 git checkout -b lite-version
+```
 
+Then move (or “checkout”) to a specific commit:
+
+```bash
 git checkout 00bb7c88f1c6fb551fd495b4682e82b9c374cd01
-Note: switching to '00bb7c88f1c6fb551fd495b4682e82b9c374cd01'.
+```
 
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by switching back to a branch.
+Git will display a message saying you are in a **“detached HEAD” state**.
 
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -c with the switch command. Example:
+This means:
 
-  git switch -c <new-branch-name>
+* You are not currently on any branch.
+* You’re viewing the repository exactly as it was at that commit.
+* You can look around or even make temporary changes.
+* But if you make new commits here, they won’t belong to any branch unless you create one using:
 
-Or undo this operation with:
+  ```bash
+  git switch -c new-branch-name
+  ```
 
-  git switch -
+In simple words, **detached HEAD** lets you travel to the past, explore, or test something without affecting your main timeline. When done, return to your latest branch using:
 
-Turn off this advice by setting config variable advice.detachedHead to false
+```bash
+git switch main
+```
 
-HEAD is now at 00bb7c8 Resolved merge conflict in Part8-BranchInGit.md
+---
 
-> Git Stash 
+### Git Stash
 
-What is git stash?
+Sometimes you’re in the middle of working on something (say an AI feature in your `feature` branch), and your manager asks you to fix an urgent bug in `main`.
+If you try switching directly:
 
-Say i am in the feature branch and we are building some ai feature. Since it is not ready i dont want to do any commit as its not complete . 
-Say my manager comes in and says there is some error in the main branch 
-Say if we shift directky to main branch, it would show error - local changes would be overwritten by checkot so pls commit changes or stash them 
+```bash
+git switch main
+```
 
-We would atash and save those changes so next time we come back to the branch, we can come back with this 
+Git will block you with:
 
-git stash 
+```
+error: Your local changes to the following files would be overwritten by checkout
+```
 
-and now move to the main branch 
+because it doesn’t want to lose your uncommitted work.
 
-Example 
-(base) ksamaarora@Ksamas-MacBook-Pro winterarc-solutions % git branch
-  lite-version
-* main
-  test
-(base) ksamaarora@Ksamas-MacBook-Pro winterarc-solutions % git switch test
-error: Your local changes to the following files would be overwritten by checkout:
-        Git/Part10-GitTimeTravel_Stash_PullRequest.md
-Please commit your changes or stash them before you switch branches.
-Aborting
-(base) ksamaarora@Ksamas-MacBook-Pro winterarc-solutions % git stash
+To temporarily **save** those changes without committing, use:
+
+```bash
+git stash
+```
+
+This stores your uncommitted changes safely and restores your working directory to a clean state, allowing you to switch branches.
+
+Now you can go fix things in the main branch.
+
+Once done, return to your previous branch and bring back your saved work using:
+
+```bash
+git stash apply
+```
+
+or
+
+```bash
+git stash pop
+```
+
+(`pop` also removes it from stash after applying).
+
+For example, from your terminal logs:
+
+```
+git stash
 Saved working directory and index state WIP on main: 221f442 changes added
-(base) ksamaarora@Ksamas-MacBook-Pro winterarc-solutions % git branch
-  lite-version
-* main
-  test
-(base) ksamaarora@Ksamas-MacBook-Pro winterarc-solutions % git stash apply
-On branch main
-Your branch is up to date with 'origin/main'.
+```
 
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   Git/Part10-GitTimeTravel_Stash_PullRequest.md
+This means your changes were saved with a note referencing the last commit ID. Later you did:
 
-no changes added to commit (use "git add" and/or "git commit -a")
-(base) ksamaarora@Ksamas-MacBook-Pro winterarc-solutions % 
+```
+git stash apply
+```
 
+and your modifications in `Part10-GitTimeTravel_Stash_PullRequest.md` were restored.
 
+**In short:**
 
+* `git stash` → save your incomplete work temporarily.
+* `git stash apply` → reapply it later.
+* `git stash pop` → reapply and remove from stash.
+* `git stash list` → view all stashed items.
 
+---
+
+### Git Fork
+
+When you want to contribute to someone else’s project (like an open-source repo), you don’t edit their repository directly.
+Instead, you **fork** it — meaning GitHub creates a **copy** of their repo under your own account.
+You can now work freely on your fork without affecting the original.
+
+Steps after forking:
+
+1. Clone your fork to your local system.
+2. Make changes in your local repo.
+3. Stage and commit your updates:
+
+   ```bash
+   git add .
+   git commit -m "Added new feature"
+   ```
+4. Push them to your fork:
+
+   ```bash
+   git push origin main
+   ```
+
+---
+
+### 🔹 Git Pull Request
+
+Now your forked repository has your changes, but you want them to be merged into the **original** project.
+This is where a **pull request (PR)** comes in.
+
+A pull request is basically a **request to merge** your changes into someone else’s repository.
+
+Steps:
+
+1. Go to the **original GitHub repository** page.
+2. Click **“Compare & Pull Request.”**
+3. Review the differences and add a short title or description.
+4. Submit the pull request.
+
+The project owner will review your changes, comment if needed, and either merge or reject your PR.
+
+---
+
+### Example Recap
+
+Imagine you’re building `feature-A` in your repo, but need to fix an urgent issue in `main`.
+You:
+
+* `git stash` → safely store unfinished feature work.
+* `git switch main` → move to fix the issue.
+* Make the fix → `git add .`, `git commit -m "fix issue"`, `git push`.
+* `git switch feature-A` → return to your branch.
+* `git stash apply` → get your previous unfinished work back.
+
+This flow lets you handle interruptions **without losing progress**.
+
+---
+
+### Quick Summary
+
+| Command                  | Purpose                                          |
+| ------------------------ | ------------------------------------------------ |
+| `git checkout <commit>`  | View a previous commit (time travel)             |
+| `git stash`              | Temporarily save uncommitted work                |
+| `git stash apply`        | Bring back stashed work                          |
+| `git switch -c <branch>` | Create and switch to new branch                  |
+| `git fork`               | Copy someone else’s repo into your account       |
+| `git push origin main`   | Push local changes to your repo                  |
+| **Pull Request**         | Ask to merge your changes into the original repo |
