@@ -28,6 +28,9 @@ Containers are similar to **Virtual Machines (VMs)** but more efficient, because
 
 ### 🧠 Difference: Virtual Machines vs Docker Containers
 
+<img width="743" height="455" alt="image" src="https://github.com/user-attachments/assets/bfd8edc8-f37f-4b30-bd81-c60e1f0d68ba" />
+
+
 **In Virtual Machines:**
 
 * Each VM runs a **full guest operating system**, on top of a **hypervisor** and the **host OS**.
