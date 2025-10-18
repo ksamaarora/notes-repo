@@ -56,6 +56,8 @@ Output will show:
 * **STATUS** – how long it’s been running
 * **PORTS** – network ports exposed
 
+<img width="902" height="138" alt="image" src="https://github.com/user-attachments/assets/bbdd4b6c-e83e-4fd2-90fe-970603aa0537" />
+
 Example (from your screenshot):
 
 ```
