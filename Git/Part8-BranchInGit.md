@@ -58,6 +58,9 @@ If you now make new changes and commit while inside `test`, Git creates **snapsh
 
 ### Explanation Using Your Diagram
 
+<img width="700" height="495" alt="Screenshot 2025-10-18 at 8 27 58 AM" src="https://github.com/user-attachments/assets/2d3700ef-81aa-4319-8a39-706e63da78d8" />
+
+
 In your Git graph (from VS Code), you can see:
 
 * The **blue line** represents the **main branch**.
