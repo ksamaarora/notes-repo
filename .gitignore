@@ -1,0 +1,75 @@
+# ==========================
+# Python / GenAI environment
+# ==========================
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ==========================
+# Jupyter / Notebooks
+# ==========================
+.ipynb_checkpoints/
+# If you save output-heavy notebooks, uncomment the next line:
+# *.ipynb
+
+# ==========================
+# Environment & secrets
+# ==========================
+*.env
+.env.local
+.env.*.local
+.envrc
+
+# ==========================
+# Logs / temp / OS artifacts
+# ==========================
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# ==========================
+# IDE / Editor metadata
+# ==========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ==========================
+# ML / DL artifacts
+# ==========================
+wandb/
+mlruns/
+outputs/
+checkpoints/
+runs/
+*.ckpt
+*.h5
+*.pt
+*.pth
+*.onnx
+
+# ==========================
+# Caches
+# ==========================
+.cache/
+pip-wheel-metadata/
+__pypackages__/
