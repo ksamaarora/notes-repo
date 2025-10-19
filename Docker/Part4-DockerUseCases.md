@@ -2,6 +2,8 @@
 
 Docker is used widely across the software development lifecycle — from building and testing to deployment and scaling. Its portability, efficiency, and environment consistency make it an essential part of modern DevOps and cloud-native workflows.
 
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/43ea4997-e3b6-423f-b957-f1005a1ee472" />
+
 ---
 
 ### 🔹 Enabling Continuous Delivery (CD)
