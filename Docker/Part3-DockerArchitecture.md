@@ -9,7 +9,9 @@ Before getting into the full architecture, let’s first understand the main com
 In simple words, **Docker Engine** is the runtime that builds, runs, and manages Docker containers.
 It’s the layer responsible for all the actual “container magic” happening behind the scenes.
 
-The stack comprises three core parts (as shown in the first diagram):
+The stack comprises three core parts:
+
+<img width="768" height="470" alt="image" src="https://github.com/user-attachments/assets/22bdc0ac-c20b-4b9b-bb3f-c9e8970849b6" />
 
 1. **Docker Daemon (`dockerd`)**
 
@@ -34,12 +36,19 @@ Both **Docker Client** and **Docker Daemon** can run on the same system, but the
 **Flow summary:**
 Client → sends command → Docker Daemon → executes it → manages containers/images/volumes/networks.
 
+### 🔹 Visual Summary
+
+* The **Client** (CLI) communicates with the **Server** (Daemon) via the **REST API**.
+* The **Daemon** manages all Docker objects — **containers**, **images**, **volumes**, and **networks**.
+* Each of these represents a part of your application setup and lifecycle.
+
 ---
 
 ### 🔹 Docker Architecture Overview
 
-Refer to the second diagram.
 Docker’s architecture consists of three main parts:
+
+<img width="720" height="365" alt="image" src="https://github.com/user-attachments/assets/7bc747a5-ec90-424f-91fe-4f3d8d8b7e0d" />
 
 1. **Docker Client**
 
@@ -63,6 +72,12 @@ Docker’s architecture consists of three main parts:
    * A storage space (public or private) for Docker images.
    * The most common example is **Docker Hub** — a public registry that stores millions of images ready to use.
    * You can also create a **private registry** within your organization.
+
+### 🔹 Visual Summary
+
+* **Client** → Sends commands like `docker build`, `docker pull`, `docker run`.
+* **Docker Host** → Executes these using the Docker Daemon.
+* **Registry** → Stores and distributes images used by Docker Host.
 
 ---
 
@@ -97,22 +112,6 @@ This entire workflow happens automatically once the command is executed.
 | **Docker Volumes**            | Mechanism to persist and share data between containers.                                        |
 | **Docker Networking**         | Software-defined networks that let containers communicate with each other or external systems. |
 | **Docker Compose**            | Tool for defining and running multi-container applications using a YAML file.                  |
-
----
-
-### 🔹 Visual Summary
-
-**From the First Diagram (InterviewBit):**
-
-* The **Client** (CLI) communicates with the **Server** (Daemon) via the **REST API**.
-* The **Daemon** manages all Docker objects — **containers**, **images**, **volumes**, and **networks**.
-* Each of these represents a part of your application setup and lifecycle.
-
-**From the Second Diagram:**
-
-* **Client** → Sends commands like `docker build`, `docker pull`, `docker run`.
-* **Docker Host** → Executes these using the Docker Daemon.
-* **Registry** → Stores and distributes images used by Docker Host.
 
 ---
 
