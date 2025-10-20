@@ -142,3 +142,6 @@ image 2
 | **Setup Complexity**             | Requires installation of dependencies like **PyTorch**, **CUDA**, **transformers**.                                  |
 | **Lack of RLHF**                 | Most open-source models don’t have **fine-tuning with human feedback**, making them weaker in instruction-following. |
 | **Limited Multimodal Abilities** | Open models don’t support **images, audio, or video** like GPT-4V.                                                   |
+
+
+Embedding models - used to convert text to vector embeddings 
