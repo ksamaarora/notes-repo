@@ -1,92 +1,85 @@
-LangCHain Models
+# LangChain Models
 
-The Model Component in LangChain is a crucial part of the framework, designed to facilitate interactions with various language models and embedding models.
+The **Model** component in LangChain is a crucial part of the framework, designed to facilitate interactions with various **language models** and **embedding models**.
 
-It abstracts the complexity of working directly with different LLMs, chat models, and embedding models, providing a uniform interface to communicate with them. This makes it easier to build applications that rely on Al-generated text, text embeddings for similarity search, and retrieval-augmented generation (RAG).|
+It abstracts the complexity of working directly with different LLMs, chat models, and embedding models, providing a **uniform interface** to communicate with them. This makes it easier to build applications that rely on **AI-generated text**, **text embeddings** for similarity search, and **retrieval-augmented generation (RAG)**.
 
-image 1
-
-In LangChain, there are mainly **two types of models**:
-
-* **Language Models (LLMs)** – take text as input and generate text as output (used to make chatbots)
-* **Embedding Models** – take text as input and generate numerical vector embeddings (used for semantic search and similarity comparison to build say rag based applications).
+> *Diagram placeholder:* **image 1** (insert your visual here)
 
 ---
 
-Language models - closed source and open source models 
+In LangChain, there are mainly **two types of models**:
 
-Embedding models - closed source and open source 
+* **Language Models (LLMs)** – take text as input and generate text as output (used to make chatbots and many other tasks).
+* **Embedding Models** – take text as input and generate numerical vector embeddings (used for semantic search and similarity comparison; foundational for RAG).
 
---- 
+---
 
-> ## Language models 
+## Contents
 
-LLMs - General-purpose models that is used for raw text generation. They take a string(or plain text) as input and returns a string( plain text). These are traditionally older models and are not used much now.
+* [LLMs vs Chat Models](#llms-vs-chat-models)
+* [Open-Source vs Closed-Source Models](#open-source-vs-closed-source-models)
+* [Parameters: temperature, tokens](#parameters-temperature-tokens)
+* [Embedding Models](#embedding-models)
+* [Practical Demos (code)](#practical-demos-code)
+* [Common Pitfalls & Fixes](#common-pitfalls--fixes)
+* [FAQ](#faq)
 
-Chat Models - Language models that are specialized for conversational tasks. They take a sequence of messages as inputs and return chat messages as outputs (as opposed to using plain text). These are traditionally newer models and used more in comparison to the LLMs.
+---
+
+## LLMs vs Chat Models
+
+**LLMs** – General-purpose models used for raw text generation. They take a string (plain text) as input and return a string (plain text). These expose a classic, simpler interface.
+
+**Chat Models** – Language models specialized for conversational tasks. They take a **sequence of messages** as input and return **chat messages** as output (with roles like `system`, `user`, `assistant`). These are commonly used today for multi-turn chat.
 
 | **Feature**          | **LLMs (Base Models)**                                                         | **Chat Models (Instruction-Tuned)**                                          |
 | -------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
 | **Purpose**          | Free-form text generation                                                      | Optimized for multi-turn conversations                                       |
 | **Training Data**    | General text corpora (books, articles)                                         | Fine-tuned on chat datasets (dialogues, user–assistant conversations)        |
-| **Memory & Context** | No built-in memory                                                             | Supports structured conversation history                                     |
-| **Role Awareness**   | No understanding of “user” and “assistant” roles                               | Understands “system”, “user”, and “assistant” roles                          |
+| **Memory & Context** | No built-in message structure                                                  | Supports structured conversation history                                     |
+| **Role Awareness**   | No understanding of “user/assistant” roles                                     | Understands `system`, `user`, and `assistant` roles                          |
 | **Example Models**   | GPT-3, Llama-2-7B, Mistral-7B, OPT-1.3B                                        | GPT-4, GPT-3.5-Turbo, Llama-2-Chat, Mistral-Instruct, Claude                 |
 | **Use Cases**        | Text generation, summarization, translation, creative writing, code generation | Conversational AI, chatbots, virtual assistants, customer support, AI tutors |
 
+---
+
+## Open-Source vs Closed-Source Models
+
+Open-source language models are freely available AI models that you can download, modify, fine-tune, and deploy on your own infrastructure. Unlike closed-source models such as OpenAI’s GPT-4, Anthropic’s Claude, or Google’s Gemini, open-source models allow full control and customization.
+
+| **Feature**       | **Open-Source Models**                | **Closed-Source Models**          |
+| ----------------- | ------------------------------------- | --------------------------------- |
+| **Cost**          | Free to run (infra cost only)         | Pay per token/API                 |
+| **Control**       | Full control, fine-tune, custom infra | Limited control, provider runtime |
+| **Data Privacy**  | Can run entirely on-prem              | Data hits vendor servers          |
+| **Customization** | Full fine-tuning freedom              | Often limited/managed fine-tuning |
+| **Deployment**    | Self-host or any cloud                | Must use provider API             |
+
+**Popular OSS models**
+
+| **Model**          | **Developer** | **Params** | **Notes**                           |
+| ------------------ | ------------- | ---------- | ----------------------------------- |
+| LLaMA-2-7B/13B/70B | Meta          | 7B–70B     | General purpose                     |
+| Mixtral-8x7B (MoE) | Mistral       | 8×7B       | Fast & efficient Mixture-of-Experts |
+| Mistral-7B         | Mistral       | 7B         | Strong small model                  |
+| Falcon-7B/40B      | TII           | 7B–40B     | High-speed inference                |
+| BLOOM-176B         | BigScience    | 176B       | Multilingual                        |
+| GPT-NeoX-20B       | EleutherAI    | 20B        | Large general-purpose               |
+| StableLM           | Stability     | 3B–7B      | Compact chat                        |
+
+**Where to find them?**
+Hugging Face – the largest hub for open-source LLMs.
 
 ---
 
-LLMs Models 
+## Parameters: temperature, tokens
 
-1. OpenAI
-2. Anthropic
-3. Google Gemini
-4. HuggingFace
+**`temperature`** controls the randomness/creativity of the output.
 
-/Users/ksamaarora/Documents/Github/winterarc-solutions/Applied LLMs/GenAI using LangChain/Part 2 Fundamentals/LangChain Models/1.LLMs/1_llm_demo.py
+* Lower values (0.0–0.3) → more deterministic and predictable.
+* Higher values (0.7–1.5) → more random, creative, and diverse.
 
-from langchain_openai import OpenAI
-from dotenv import load_dotenv
-
-load_dotenv()
-
-llm = OpenAI(model='gpt-3.5-turbo-instruct')
-
-result= llm.invoke("What is the capital on India?")
-
-print(result)
-
----
-
-/Users/ksamaarora/Documents/Github/winterarc-solutions/Applied LLMs/GenAI using LangChain/Part 2 Fundamentals/LangChain Models/2.ChatModels/1_chatmodel_openai.py
-
-from langchain_openai import ChatOpenAI
-
-from dotenv import load_dotenv
-
-load_dotenv()
-
-model = ChatOpenAI(model='gpt-4')
-
-result= model.invoke("What is the capital of India?")
-
-print(result.content)
-
-
-(venv) ksamaarora@Ksamas-MacBook-Pro LangChain Models % python 2.ChatModels/1_chatmodel_openai.py
-None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
-content='The capital of India is New Delhi.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 8, 'prompt_tokens': 14, 'total_tokens': 22, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4-0613', 'system_fingerprint': None, 'id': 'chatcmpl-CSj7w04lVIOqgZooqtDGllUgo3LsK', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--ce9b2281-a649-4b57-b11f-cca6526acd11-0' usage_metadata={'input_tokens': 14, 'output_tokens': 8, 'total_tokens': 22, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}
-(venv) ksamaarora@Ksamas-MacBook-Pro LangChain Models % python 2.ChatModels/1_chatmodel_openai.py
-None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
-The capital of India is New Delhi.
-
----
-
-temperature is a parameter that controls the randomness of a language model’s output.
-It affects how creative or deterministic the responses are.
-Lower values (0.0 – 0.3) → More deterministic and predictable.
-Higher values (0.7 – 1.5) → More random, creative, and diverse.
 | **Use Case**                                   | **Recommended Temperature** |
 | ---------------------------------------------- | --------------------------- |
 | Factual answers (math, code, facts)            | 0.0 – 0.3                   |
@@ -94,54 +87,166 @@ Higher values (0.7 – 1.5) → More random, creative, and diverse.
 | Creative writing, storytelling, jokes          | 0.9 – 1.2                   |
 | Maximum randomness (wild ideas, brainstorming) | 1.5+                        |
 
+**Tokens & lengths**
 
-max_completion_tokens are ..
-
-What are tokens?
+* **What’s a token?** A small chunk of text (sub-word pieces). Most providers count billing and limits in tokens rather than characters.
+* **`max_new_tokens` (HF):** The **maximum number of tokens** the model is allowed to **generate in the response**. It does **not** count your prompt.
+* **`max_completion_tokens` (OpenAI Chat):** Same idea as above for OpenAI chat models — caps the **generated** part only.
+* **Context window (e.g., 8k/32k):** The **total capacity** of the model for **prompt + response together**. If your prompt is very long, you must lower the allowed output or shorten the prompt to fit within the window.
 
 ---
 
-Open Source Models
-08:58
-Open-source language models are freely available Al models that can be downloaded, modified, fine-tuned, and deployed without restrictions from a central,provider. Unlike closed-source models such as OpenAl's GPT-4, Anthropic's Claude, or Google's Gemini, open-source models allow full control and customization.
+## Embedding Models
 
+Embedding models convert text to **vectors** so you can do:
 
-| **Feature**       | **Open-Source Models**                          | **Closed-Source Models**                        |
-| ----------------- | ----------------------------------------------- | ----------------------------------------------- |
-| **Cost**          | Free to use (no API costs)                      | Paid API usage (e.g., OpenAI charges per token) |
-| **Control**       | Can modify, fine-tune, and deploy anywhere      | Locked to provider’s infrastructure             |
-| **Data Privacy**  | Runs locally (no data sent to external servers) | Sends queries to provider’s servers             |
-| **Customization** | Can fine-tune on specific datasets              | No access to fine-tuning in most cases          |
-| **Deployment**    | Can be deployed on on-premise servers or cloud  | Must use vendor’s API                           |
+* **Semantic search** (nearest neighbors)
+* **Similarity** (cosine similarity)
+* **RAG** (retrieve relevant chunks first, then generate)
 
-Some Famous Open SOurce Models 
+Common choices:
 
-| **Model**              | **Developer** | **Parameters** | **Best Use Case**                                |
-| ---------------------- | ------------- | -------------- | ------------------------------------------------ |
-| **LLaMA-2-7B/13B/70B** | Meta AI       | 7B – 70B       | General-purpose text generation                  |
-| **Mixtral-8x7B**       | Mistral AI    | 8×7B (MoE)     | Efficient & fast responses                       |
-| **Mistral-7B**         | Mistral AI    | 7B             | Best small-scale model (outperforms LLaMA-2-13B) |
-| **Falcon-7B/40B**      | TII UAE       | 7B – 40B       | High-speed inference                             |
-| **BLOOM-176B**         | BigScience    | 176B           | Multilingual text generation                     |
-| **GPT-J-6B**           | EleutherAI    | 6B             | Lightweight and efficient                        |
-| **GPT-NeoX-20B**       | EleutherAI    | 20B            | Large-scale applications                         |
-| **StableLM**           | Stability AI  | 3B – 7B        | Compact models for chatbots                      |
+* **OpenAI**: `text-embedding-3-small`, `text-embedding-3-large`
+* **Hugging Face**: `sentence-transformers/all-MiniLM-L6-v2` (great & fast baseline)
 
+---
 
-Where to find them? 
-Hugging face - the largest repo for open source llms 
+## Practical Demos (code)
 
-Ways to use open source models 
+> Use the relative links below from this README’s folder.
 
-image 2
+### 1) LLM (string in → string out)
 
+**OpenAI LLM demo**
+`[1.LLMs/1_llm_demo.py](1.LLMs/1_llm_demo.py)`
 
-| **Disadvantage**                 | **Details**                                                                                                          |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **High Hardware Requirements**   | Running large models (e.g., LLaMA-2-70B) requires expensive GPUs.                                                    |
-| **Setup Complexity**             | Requires installation of dependencies like **PyTorch**, **CUDA**, **transformers**.                                  |
-| **Lack of RLHF**                 | Most open-source models don’t have **fine-tuning with human feedback**, making them weaker in instruction-following. |
-| **Limited Multimodal Abilities** | Open models don’t support **images, audio, or video** like GPT-4V.                                                   |
+```python
+from langchain_openai import OpenAI
+from dotenv import load_dotenv
 
+load_dotenv()
 
-Embedding models - used to convert text to vector embeddings 
+llm = OpenAI(model="gpt-3.5-turbo-instruct")
+result = llm.invoke("What is the capital of India?")
+print(result)  # returns a plain str
+```
+
+### 2) Chat Models (messages in → message out)
+
+**OpenAI Chat demo**
+`[2.ChatModels/1_chatmodel_openai.py](2.ChatModels/1_chatmodel_openai.py)`
+
+```python
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+model = ChatOpenAI(model="gpt-4", temperature=0.3, max_completion_tokens=10)
+result = model.invoke("Write a 5 line poem on monsoon in Mumbai.")
+print(result.content)  # AIMessage.content
+```
+
+**DeepSeek-R1 via Hugging Face (conversational task)**
+`[2.ChatModels/3_chatmodel_hf_api.py](2.ChatModels/3_chatmodel_hf_api.py)`
+
+```python
+from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from dotenv import load_dotenv
+
+load_dotenv()
+
+chat = ChatHuggingFace(
+    llm=HuggingFaceEndpoint(
+        repo_id="deepseek-ai/DeepSeek-R1",
+        task="conversational",      # IMPORTANT: this model is "conversational" on HF
+        temperature=0.2,
+        max_new_tokens=64,
+    )
+)
+
+result = chat.invoke("What is the capital of India?")
+print(result.content)
+```
+
+### 3) Embeddings (query + docs)
+
+**OpenAI: embed a single query**
+`[3.EmbeddedModels/1_embedding_openai_query.py](3.EmbeddedModels/1_embedding_openai_query.py)`
+
+```python
+from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
+
+embedding = OpenAIEmbeddings(model="text-embedding-3-small", dimensions=32)
+vec = embedding.embed_query("Delhi is the capital of India")
+print(vec)  # list[float]
+```
+
+**OpenAI: embed multiple documents**
+`[3.EmbeddedModels/2_embedding_openai_docs.py](3.EmbeddedModels/2_embedding_openai_docs.py)`
+
+```python
+from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
+
+embedding = OpenAIEmbeddings(model="text-embedding-3-small", dimensions=32)
+documents = [
+    "Delhi is the capital of India",
+    "Kolkata is the capital of West Bengal",
+    "Paris is the capital of France",
+]
+doc_vecs = embedding.embed_documents(documents)
+print(doc_vecs)
+```
+
+**Hugging Face (local embedding)**
+`[3.EmbeddedModels/3_embedding_hf_local.py](3.EmbeddedModels/3_embedding_hf_local.py)`
+
+```python
+from langchain_huggingface import HuggingFaceEmbeddings
+
+embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+documents = [
+    "Delhi is the capital of India",
+    "Kolkata is the capital of West Bengal",
+    "Paris is the capital of France",
+]
+vecs = embedding.embed_documents(documents)
+print(vecs)
+```
+
+**Document similarity with cosine**
+`[3.EmbeddedModels/4_document_similarity.py](3.EmbeddedModels/4_document_similarity.py)`
+
+```python
+from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
+from sklearn.metrics.pairwise import cosine_similarity
+
+load_dotenv()
+embedding = OpenAIEmbeddings(model="text-embedding-3-large", dimensions=300)
+
+documents = [
+    "Virat Kohli is an Indian cricketer known for his aggressive batting and leadership.",
+    "MS Dhoni is a former Indian captain famous for his calm demeanor and finishing skills.",
+    "Sachin Tendulkar, also known as the 'God of Cricket', holds many batting records.",
+    "Rohit Sharma is known for his elegant batting and record-breaking double centuries.",
+    "Jasprit Bumrah is an Indian fast bowler known for his unorthodox action and yorkers.",
+]
+query = "tell me about bumrah"
+
+doc_embeddings = embedding.embed_documents(documents)
+query_embedding = embedding.embed_query(query)
+
+scores = cosine_similarity([query_embedding], doc_embeddings)[0]
+best_idx = max(enumerate(scores), key=lambda x: x[1])[0]
+
+print("Query:", query)
+print("Best match:", documents[best_idx])
+print("Similarity:", scores[best_idx])
+```
