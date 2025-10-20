@@ -22,7 +22,9 @@ This is where LangChain helps:
 
 ---
 
-### 🧩 **Keyword Search vs Semantic Search (Image 1)**
+### 🧩 **Keyword Search vs Semantic Search**
+
+<img width="747" height="304" alt="image" src="https://github.com/user-attachments/assets/eafa3654-6ab8-4899-b4d7-5906be6e297a" />
 
 In a simple system:
 
@@ -35,7 +37,9 @@ So unlike a basic search engine, the **“brain” understands context**, not ju
 
 ---
 
-### 🔄 **The Complete Flow (Image 2)**
+### 🔄 **The Complete Flow**
+
+<img width="766" height="414" alt="image" src="https://github.com/user-attachments/assets/0f91b7bd-e499-470a-9377-32a1ababdc32" />
 
 Here’s what happens step-by-step in a real RAG (Retrieval-Augmented Generation) system:
 
