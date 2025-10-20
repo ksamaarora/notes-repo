@@ -1,2 +1,1 @@
-# striverwinterarc-solutions
-solutions to the leetcode problems
+notes repo 
