@@ -158,5 +158,5 @@ docker build -t myapp:latest .
 
 ### 🧠 Key Idea
 
-Think of a **Docker image** as a **recipe**, and a **container** as the **dish** prepared from that recipe.
-You can cook (run) as many dishes (containers) as you like from the same recipe (image), anywhere, anytime — and they’ll all taste exactly the same.
+Think of a **Docker image** as a recipe, and a **container** as the actual dish prepared from that recipe.
+You can create many identical dishes (containers) from the same recipe (image) anywhere, anytime, with the same results.
