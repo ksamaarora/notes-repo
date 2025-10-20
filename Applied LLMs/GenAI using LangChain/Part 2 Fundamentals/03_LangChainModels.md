@@ -34,3 +34,13 @@ Chat Models - Language models that are specialized for conversational tasks. The
 | **Example Models**   | GPT-3, Llama-2-7B, Mistral-7B, OPT-1.3B                                        | GPT-4, GPT-3.5-Turbo, Llama-2-Chat, Mistral-Instruct, Claude                 |
 | **Use Cases**        | Text generation, summarization, translation, creative writing, code generation | Conversational AI, chatbots, virtual assistants, customer support, AI tutors |
 
+
+---
+
+LLMs Models 
+
+1. OpenAI
+2. Anthropic
+3. Google Gemini
+4. HuggingFace
+
