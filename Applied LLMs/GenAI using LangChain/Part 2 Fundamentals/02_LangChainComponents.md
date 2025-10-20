@@ -2,7 +2,7 @@
 
 LangChain helps build applications that use large language models (LLMs) more efficiently. It has six key components — **Models, Prompts, Chains, Indexes, Memory, and Agents** — each solving a core problem when working with AI systems.
 
-*(Image 1 placeholder)*
+<img width="568" height="296" alt="image" src="https://github.com/user-attachments/assets/f0771250-7f03-48c4-be28-aaf24bb0f861" />
 
 ---
 
@@ -249,7 +249,7 @@ When a user asks a question, the retriever finds relevant chunks and sends them 
 
 By default, LLM API calls are **stateless** — each request is independent and doesn’t remember past interactions.
 
-*(Image 2 placeholder)*
+<img width="668" height="176" alt="image" src="https://github.com/user-attachments/assets/08156467-1da8-4323-b10d-a7f329368b4e" />
 
 For example:
 If you first ask, “Who is Narendra Modi?” and then “How old is he?”, the model won’t know who “he” is.
