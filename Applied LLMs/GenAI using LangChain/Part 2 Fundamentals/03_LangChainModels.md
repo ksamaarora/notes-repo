@@ -22,8 +22,6 @@ In LangChain, there are mainly **two types of models**:
 * [Parameters: temperature, tokens](#parameters-temperature-tokens)
 * [Embedding Models](#embedding-models)
 * [Practical Demos (code)](#practical-demos-code)
-* [Common Pitfalls & Fixes](#common-pitfalls--fixes)
-* [FAQ](#faq)
 
 ---
 
