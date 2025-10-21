@@ -4,7 +4,8 @@ The **Model** component in LangChain is a crucial part of the framework, designe
 
 It abstracts the complexity of working directly with different LLMs, chat models, and embedding models, providing a **uniform interface** to communicate with them. This makes it easier to build applications that rely on **AI-generated text**, **text embeddings** for similarity search, and **retrieval-augmented generation (RAG)**.
 
-> *Diagram placeholder:* **image 1** (insert your visual here)
+> <img width="447" height="272" alt="image" src="https://github.com/user-attachments/assets/1b18cf3b-e2e2-4e8c-b9eb-6f309418e159" />
+
 
 ---
 
@@ -144,6 +145,8 @@ model = ChatOpenAI(model="gpt-4", temperature=0.3, max_completion_tokens=10)
 result = model.invoke("Write a 5 line poem on monsoon in Mumbai.")
 print(result.content)  # AIMessage.content
 ```
+
+<img width="408" height="264" alt="image" src="https://github.com/user-attachments/assets/cd5787c8-3a16-401c-bd13-9886d1be4b80" />
 
 **DeepSeek-R1 via Hugging Face (conversational task)**
 `[2.ChatModels/3_chatmodel_hf_api.py](2.ChatModels/3_chatmodel_hf_api.py)`
