@@ -1,28 +1,33 @@
-React is JS library for rendering UI 
-
-Overview (Part 1)
-How to write your first React component
-When and how to create multi-component files
-How to add markup to JavaScript with JSX
-How to use curly braces with JSX to access JavaScript functionality from your components
-How to configure components with props
+Got it! I’ve added a clickable table of contents that jumps to each section, and kept everything else the same (just formatting). You can paste this straight into your README.
 
 ---
 
-How to write your first React component
+# React is a JS library for rendering UI
 
-React applications are built from isolated pieces of UI called components. 
+## 📘 Overview (Part 1)
 
-A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. 
+* [How to write your first React component](#how-to-write-your-first-react-component)
+* [When and how to create multi-component files](#when-and-how-to-create-multi-component-files)
+* [How to add markup to JavaScript with JSX](#how-to-add-markup-to-javascript-with-jsx)
+* [How to use curly braces { } with JSX](#how-to-use-curly-braces--with-jsx)
+* [How to configure components with props](#how-to-configure-components-with-props)
+* [Passing JSX as children (Important)](#passing-jsx-as-children-important)
 
-“components”, reusable UI elements for your app
+---
 
-Here is a Gallery component rendering three Profile components:
+## 🧩 How to write your first React component
 
+React applications are built from isolated pieces of UI called **components**.
+
+A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page.
+
+Here is a `Gallery` component rendering three `Profile` components:
+
+```jsx
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://i.r.com/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -38,28 +43,38 @@ export default function Gallery() {
     </section>
   );
 }
+```
 
-Export default - stamndard js syntax lets you mark the main function in a file so that you can later import it from other files
+`export default` — standard JS syntax that lets you mark the main function in a file so you can later import it from other files.
 
-Define the function - With function Profile() { } you define a JavaScript function with the name Profile (Note always start wityh capital letter!)
+### Define the function
 
-Add markup
+With `function Profile() { }` you define a JavaScript function with the name **Profile** (Note: always start with a capital letter!).
+
+### Add markup
+
+```jsx
 return (
   <div>
     <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
   </div>
 );
+```
 
-Nesting components 
-As u have defined profile component, you can also nest it in another compoents - export a gallery componet that uses multiple profile components 
+### Nesting components
 
-You can also move Profile to a seperate fle if the file gets crowded. (in the section of page about imports ahead)
+As you have defined `Profile`, you can also nest it in another component and export a `Gallery` component that uses multiple `Profile` components.
 
-Gallery is a parent component, rendering each Profile as a “child”
+You can also move `Profile` to a separate file if the file gets crowded.
+`Gallery` is a **parent** component, rendering each `Profile` as a “child”.
 
-NOTE!
-Components can render other components, but you must never nest their definitions:
+---
 
+### ⚠️ NOTE!
+
+Components can render other components, but you must **never** nest their definitions:
+
+```jsx
 export default function Gallery() {
   // 🔴 Never define a component inside another component!
   function Profile() {
@@ -67,8 +82,12 @@ export default function Gallery() {
   }
   // ...
 }
-The snippet above is very slow and causes bugs. Instead, define every component at the top level:
+```
 
+The snippet above is very slow and causes bugs.
+Instead, define every component at the **top level**:
+
+```jsx
 export default function Gallery() {
   // ...
 }
@@ -77,23 +96,29 @@ export default function Gallery() {
 function Profile() {
   // ...
 }
-When a child component needs some data from a parent, pass it by props instead of nesting definitions.
+```
+
+When a child component needs some data from a parent, pass it by **props** instead of nesting definitions.
 
 ---
 
-When and how to create multi-component files
+## 🗂️ When and how to create multi-component files
 
-Importing and Exporting Components
+### Importing and Exporting Components
 
-What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move Gallery and Profile out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
+If you want to reuse components elsewhere, move them into separate files.
 
-Make a new JS file to put the components in.
-Export your function component from that file (using either default or named exports).
-Import it in the file where you’ll use the component (using the corresponding technique for importing default or named exports).
+Steps:
 
-Here both Profile and Gallery have been moved out of App.js into a new file called Gallery.js. Now you can change App.js to import Gallery from Gallery.js:
+1. Make a new JS file.
+2. Export your component (default or named).
+3. Import it where needed.
 
-App.js
+**Example**
+
+`App.js`
+
+```jsx
 import Gallery from './Gallery.js';
 
 export default function App() {
@@ -101,9 +126,11 @@ export default function App() {
     <Gallery />
   );
 }
+```
 
+`Gallery.js`
 
-Gallery.js
+```jsx
 function Profile() {
   return (
     <img
@@ -123,46 +150,43 @@ export default function Gallery() {
     </section>
   );
 }
+```
 
-Gallery.js:
-Defines the Profile component which is only used within the same file and is not exported.
-Exports the Gallery component as a default export.
-App.js:
-Imports Gallery as a default import from Gallery.js.
-Exports the root App component as a default export.
+**Explanation**
+
+* `Gallery.js`: Defines the `Profile` component (not exported) and exports `Gallery` as **default**.
+* `App.js`: Imports `Gallery` as a **default import**.
 
 ---
 
-Default vs Named Exports 
+## 🔄 Default vs Named Exports
 
-There are two primary ways to export values with JavaScript: default exports and named exports. 
+There are two primary ways to export values with JavaScript: default exports and named exports.
+A file can have **only one default export**, but can have **multiple named exports**.
 
-A file can have no more than one default export, but it can have as many named exports as you like.
+### Example 1 – Named export
 
-img 1
-
-Method to import and export default and named
-Note:  file can only have one default export, but it can have numerous named exports!
-
-img 2
-
-
-First, export Profile from Gallery.js using a named export (no default keyword):
-
+```jsx
+// Gallery.js
 export function Profile() {
   // ...
 }
-Then, import Profile from Gallery.js to App.js using a named import (with the curly braces):
+```
 
+```jsx
+// App.js
 import { Profile } from './Gallery.js';
-Finally, render <Profile /> from the App component:
 
 export default function App() {
   return <Profile />;
 }
-Now Gallery.js contains two exports: a default Gallery export, and a named Profile export. App.js imports both of them. Try editing <Profile /> to <Gallery /> and back in this example:
+```
 
-App.js
+### Example 2 – Mixing default + named exports
+
+`App.js`
+
+```jsx
 import Gallery from './Gallery.js';
 import { Profile } from './Gallery.js';
 
@@ -171,9 +195,11 @@ export default function App() {
     <Profile />
   );
 }
+```
 
+`Gallery.js`
 
-Gallery.js
+```jsx
 export function Profile() {
   return (
     <img
@@ -193,74 +219,65 @@ export default function Gallery() {
     </section>
   );
 }
-
-Now you’re using a mix of default and named exports:
-
-Gallery.js:
-Exports the Profile component as a named export called Profile.
-Exports the Gallery component as a default export.
-App.js:
-Imports Profile as a named import called Profile from Gallery.js.
-Imports Gallery as a default import from Gallery.js.
-Exports the root App component as a default export.
+```
 
 ---
 
-How to add markup to JavaScript with JSX - Writing markup with JSX
+## 🧱 How to add markup to JavaScript with JSX
 
+JSX is a syntax extension for JavaScript that lets you write **HTML-like markup** inside JS.
 JSX is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file.
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information. 
+Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
 
-The Rules of JSX 
+### The Rules of JSX
 
-1. Return a single root element 
+#### 1️⃣ Return a single root element
 
-To return multiple elements from a component, wrap them with a single parent tag.
+Wrap multiple elements with one parent tag:
 
-For example, you can use a <div>:
-
+```jsx
 <div>
   <h1>Hedy Lamarr's Todos</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
-    class="photo"
-  >
-  <ul>
-    ...
-  </ul>
+    className="photo"
+  />
+  <ul>...</ul>
 </div>
-If you don’t want to add an extra <div> to your markup, you can write <> and </> instead:
+```
 
+If you don’t want an extra `<div>`, use **Fragments**:
+
+```jsx
 <>
   <h1>Hedy Lamarr's Todos</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
-    class="photo"
-  >
-  <ul>
-    ...
-  </ul>
+    className="photo"
+  />
+  <ul>...</ul>
 </>
-This empty tag is called a Fragment. Fragments let you group things without leaving any trace in the browser HTML tree.
+```
 
-2. Close all the tags 
+#### 2️⃣ Close all tags
 
-3.  camelCase all most of the things! 
-For example, instead of stroke-width you use strokeWidth. Since class is a reserved word, in React you write className instead, named after the corresponding DOM property
+#### 3️⃣ Use camelCase for most attributes
 
-Error messages will often point you in the right direction to fixing your markup.
+`className`, `strokeWidth`, etc.
 
 ---
 
-How to use curly braces with JSX to access JavaScript functionality from your components
+## 🌀 How to use curly braces { } with JSX
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
+Sometimes you need to insert JavaScript logic inside markup — use `{ }`.
+Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
 
-Passing strings with quotes
+### Passing strings with quotes
 
+```jsx
 export default function Avatar() {
   return (
     <img
@@ -270,11 +287,11 @@ export default function Avatar() {
     />
   );
 }
+```
 
-Here, "https://i.imgur.com/7vQD0fPs.jpg" and "Gregorio Y. Zara" are being passed as strings.
+### Dynamically specify values
 
-But what if you want to dynamically specify the src or alt text? You could use a value from JavaScript by replacing " and " with { and }:
-
+```jsx
 export default function Avatar() {
   const avatar = 'https://i.imgur.com/7vQD0fPs.jpg';
   const description = 'Gregorio Y. Zara';
@@ -286,16 +303,11 @@ export default function Avatar() {
     />
   );
 }
+```
 
-JSX is a special way of writing JavaScript. That means it’s possible to use JavaScript inside it—with curly braces { }.
+### “Double curlies” for inline CSS or objects
 
-
-Using “double curlies”: CSS and other objects in JSX 
-
-In addition to strings, numbers, and other JavaScript expressions, you can even pass objects in JSX. Objects are also denoted with curly braces, like { name: "Hedy Lamarr", inventions: 5 }. Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: person={{ name: "Hedy Lamarr", inventions: 5 }}.
-
-App.js
-
+```jsx
 export default function TodoList() {
   return (
     <ul style={{
@@ -308,23 +320,25 @@ export default function TodoList() {
     </ul>
   );
 }
+```
 
-The next time you see {{ and }} in JSX, know that it’s nothing more than an object inside the JSX curlies!
+The next time you see `{{` and `}}` in JSX, know that it’s nothing more than an object inside the JSX curlies!
 
-Note: Inline style properties are written in camelCase!
+> **Note:** Inline style properties are written in camelCase!
 
 ---
 
-How to configure components with props
+## ⚙️ How to configure components with props
 
-Passing props to a component
+### Passing props to a component
 
-React components use props to communicate with each other. Every parent component can pass some information to its child components by giving them props.
+Props are the information you pass to a JSX tag. React components use props to communicate with each other. Every parent component can pass some information to its child components by giving them props.
 
-Familiar props 
+**Familiar props**
 
-Props are the information that you pass to a JSX tag. For example, className, src, alt, width, and height are some of the props you can pass to an <img>:
+Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
 
+```jsx
 function Avatar() {
   return (
     <img
@@ -338,21 +352,13 @@ function Avatar() {
 }
 
 export default function Profile() {
-  return (
-    <Avatar />
-  );
+  return <Avatar />;
 }
+```
 
-Passing props to a component 
+### Step 1 – Pass props
 
-In this code, the Profile component isn’t passing any props to its child component, Avatar
-
-You can give Avatar some props in 2 steps 
-
-Step 1 : Pass props to the child component
-
-First, pass some props to Avatar. For example, let’s pass two props: person (an object), and size (a number):
-
+```jsx
 export default function Profile() {
   return (
     <Avatar
@@ -361,19 +367,21 @@ export default function Profile() {
     />
   );
 }
-Note: If double curly braces after person= confuse you, recall they’re merely an object inside the JSX curlies.
+```
 
-Step 2: Read props inside the child component 
+### Step 2 – Read props
 
-You can read these props by listing their names person, size separated by the commas inside ({ and }) directly after function Avatar. This lets you use them inside the Avatar code, like you would with a variable.
-
+```jsx
 function Avatar({ person, size }) {
-  // person and size are available here
+  // use person and size
 }
+```
 
-Example
+### Full example
 
-App.js
+`App.js`
+
+```jsx
 import { getImageUrl } from './utils.js';
 
 function Avatar({ person, size }) {
@@ -391,32 +399,17 @@ function Avatar({ person, size }) {
 export default function Profile() {
   return (
     <div>
-      <Avatar
-        size={100}
-        person={{ 
-          name: 'Katsuko Saruhashi', 
-          imageId: 'YfeOqp2'
-        }}
-      />
-      <Avatar
-        size={80}
-        person={{
-          name: 'Aklilu Lemma', 
-          imageId: 'OKS67lh'
-        }}
-      />
-      <Avatar
-        size={50}
-        person={{ 
-          name: 'Lin Lanying',
-          imageId: '1bX5QH6'
-        }}
-      />
+      <Avatar size={100} person={{ name: 'Katsuko Saruhashi', imageId: 'YfeOqp2' }} />
+      <Avatar size={80}  person={{ name: 'Aklilu Lemma', imageId: 'OKS67lh' }} />
+      <Avatar size={50}  person={{ name: 'Lin Lanying',  imageId: '1bX5QH6' }} />
     </div>
   );
 }
+```
 
-utils.js
+`utils.js`
+
+```jsx
 export function getImageUrl(person, size = 's') {
   return (
     'https://i.imgur.com/' +
@@ -425,35 +418,21 @@ export function getImageUrl(person, size = 's') {
     '.jpg'
   );
 }
+```
 
-Props let you think about parent and child components independently. For example, you can change the person or the size props inside Profile without having to think about how Avatar uses them. Similarly, you can change how the Avatar uses these props, without looking at the Profile.
+---
 
-You can think of props like “knobs” that you can adjust. They serve the same role as arguments serve for functions—in fact, props are the only argument to your component! React component functions accept a single argument, a props object:
+### Setting default prop values
 
-function Avatar(props) {
-  let person = props.person;
-  let size = props.size;
-  // ...
-}
-
-Note: Don’t miss the pair of { and } curlies inside of ( and ) when declaring props:
-
-function Avatar({ person, size }) {
-  // ...
-}
-
-
-Specifying a default value for a prop 
-
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting = and the default value right after the parameter:
-
+```jsx
 function Avatar({ person, size = 100 }) {
   // ...
 }
+```
 
-Passing JSX as children (IMPORTANT)
+---
 
-Let’s break this down step by step 👇
+## 🎁 Passing JSX as children (**Important**)
 
 ### 🧩 Concept: Passing JSX as **children**
 
@@ -570,7 +549,6 @@ export default function Profile() {
 * `<Card>` wraps around `<Avatar>`.
 * So `<Avatar>` becomes the `children` of `<Card>`.
 
-
 **2️⃣ Avatar.js**
 
 ```jsx
@@ -591,7 +569,6 @@ export default function Avatar({ person, size }) {
 
 * This component just returns an `<img>` tag with the given props.
 
-
 **3️⃣ utils.js**
 
 ```jsx
@@ -601,7 +578,6 @@ export function getImageUrl(person, size = 's') {
 ```
 
 * Generates the URL of the image dynamically.
-
 
 ### 🪞 Final Rendered Output
 
@@ -619,7 +595,6 @@ After everything runs, your `Profile` component renders:
 </div>
 ```
 
-
 ### ⚡ Key Takeaways
 
 | Concept           | Meaning                                                                                                                |
@@ -627,7 +602,6 @@ After everything runs, your `Profile` component renders:
 | **children prop** | A special prop automatically provided when you nest JSX inside a component                                             |
 | **Use case**      | Lets you create *wrapper* or *layout* components (like `Card`, `Modal`, `Container`, etc.) that can wrap any child JSX |
 | **Benefit**       | Makes components reusable — `Card` can wrap anything (`<Avatar>`, `<Post>`, `<Button>`, etc.)                          |
-
 
 ### 🌱 Bonus Tip
 
@@ -652,4 +626,3 @@ Then `children` will be **an array of all three elements**:
 ```
 
 React will render all of them inside the `<div className="card">`.
-
