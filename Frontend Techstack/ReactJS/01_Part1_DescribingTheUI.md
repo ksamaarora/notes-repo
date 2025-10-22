@@ -102,7 +102,7 @@ When a child component needs some data from a parent, pass it by **props** inste
 
 ---
 
-## 🗂️ When and how to create multi-component files
+## When and how to create multi-component files
 
 ### Importing and Exporting Components
 
