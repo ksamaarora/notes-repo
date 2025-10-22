@@ -1,7 +1,3 @@
-Got it! I’ve added a clickable table of contents that jumps to each section, and kept everything else the same (just formatting). You can paste this straight into your README.
-
----
-
 # React is a JS library for rendering UI
 
 ## 📘 Overview (Part 1)
@@ -15,7 +11,7 @@ Got it! I’ve added a clickable table of contents that jumps to each section, a
 
 ---
 
-## 🧩 How to write your first React component
+## How to write your first React component
 
 React applications are built from isolated pieces of UI called **components**.
 
@@ -223,7 +219,7 @@ export default function Gallery() {
 
 ---
 
-## 🧱 How to add markup to JavaScript with JSX
+## How to add markup to JavaScript with JSX
 
 JSX is a syntax extension for JavaScript that lets you write **HTML-like markup** inside JS.
 JSX is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file.
@@ -270,7 +266,7 @@ If you don’t want an extra `<div>`, use **Fragments**:
 
 ---
 
-## 🌀 How to use curly braces { } with JSX
+## How to use curly braces { } with JSX
 
 Sometimes you need to insert JavaScript logic inside markup — use `{ }`.
 Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
@@ -328,7 +324,7 @@ The next time you see `{{` and `}}` in JSX, know that it’s nothing more than a
 
 ---
 
-## ⚙️ How to configure components with props
+## How to configure components with props
 
 ### Passing props to a component
 
@@ -432,7 +428,7 @@ function Avatar({ person, size = 100 }) {
 
 ---
 
-## 🎁 Passing JSX as children (**Important**)
+## Passing JSX as children (**Important**)
 
 ### 🧩 Concept: Passing JSX as **children**
 
