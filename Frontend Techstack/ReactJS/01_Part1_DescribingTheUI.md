@@ -102,7 +102,11 @@ When a child component needs some data from a parent, pass it by **props** inste
 
 ### Importing and Exporting Components
 
+<img width="662" height="322" alt="image" src="https://github.com/user-attachments/assets/d78b0705-f320-492d-b905-786a653f37b4" />
+
 If you want to reuse components elsewhere, move them into separate files.
+
+<img width="812" height="244" alt="image" src="https://github.com/user-attachments/assets/cd9b10c2-8964-4a89-8a5b-19c330405d56" />
 
 Steps:
 
