@@ -11,6 +11,9 @@ Units in simple terms can be understood as the smallest testable parts of an app
 
 Junit 5 Architecture:
 Junit 5 is composed of three main modules:
+
+<img width="720" height="234" alt="image" src="https://github.com/user-attachments/assets/bc36077e-cc03-4a3f-860c-62532efe40e1" />
+
 Jupiter: This module provides the new programming model and extension model for writing tests and extensions in Junit 5. It includes annotations, assertions, and other features for creating and executing tests.
 Vintage: This module provides support for running Junit 3 and Junit 4 tests on the Junit 5 platform. It allows for backward compatibility with older versions of Junit.
 Platform: This module serves as the foundation for launching testing frameworks on the Junit 5 platform. It provides the necessary infrastructure for discovering and executing tests.
