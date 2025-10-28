@@ -38,6 +38,9 @@ This simplicity makes debugging easy, since messages are human-readable and tran
 The **Capability Layer** defines **what MCP can actually do** — the level where **real functionality** is exposed to the AI model.
 It introduces **three core primitives**:
 
+<img width="584" height="327" alt="Screenshot 2025-10-28 at 9 01 42 PM" src="https://github.com/user-attachments/assets/8892e97e-83d4-40ec-8b77-14d86681835d" />
+
+
 * **Tools** → Functions that the AI can execute to perform actions, such as sending emails, searching documents, or creating database entries.
 * **Resources** → Provide **read-only access** to external data without altering it — for example, retrieving user records, fetching files, or reading from a knowledge base.
 * **Prompts** → Act as **reusable templates or workflows** that help the AI combine multiple actions efficiently, similar to how macros or saved pipelines work in traditional software.
