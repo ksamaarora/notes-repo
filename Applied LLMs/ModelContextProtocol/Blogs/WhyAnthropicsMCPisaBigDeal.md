@@ -18,7 +18,7 @@ MCP provides a standardized way for AI systems to connect with any data source o
 
 Refer to these blogs now for more detail:
 
-[01 What is MCP?](/Blogs/01_WhatisMCP.md)
+[01 What is MCP?](01_WhatisMCP.md)
 [02 MCP Architecture](/Blogs/02_MCPArchitecture.md)
 [03 MCP Protocol Stack](/Blogs/03_MCPProtocolStack.md)
 [04 How MCP Works](/Blogs/04_HowMCPWorks.md)
