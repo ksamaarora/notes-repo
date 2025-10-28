@@ -54,3 +54,74 @@ This annotation tells the web container that this particular servlet should hand
 **In short:**
 A servlet is the **bridge between the client’s request and the dynamic response** from the server.
 The **web container** (like Tomcat) takes care of loading, mapping, and running servlets behind the scenes.
+
+--- 
+
+What is Tomcat?
+**Apache Tomcat** is an open-source web server and servlet container developed by the Apache Software Foundation. It is designed to execute Java Servlets and render web pages that use Java Server Pages (JSP). Tomcat provides a "pure Java" HTTP web server environment for Java code to run in, making it a popular choice for hosting Java-based web applications. It implements several Java EE specifications, including Java Servlet, JSP, and WebSocket, allowing developers to build and deploy dynamic web applications efficiently.
+
+---
+
+Say we have a code to add 2 numbers in index.html 
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Two Numbers</title>
+</head>
+<body>
+    <h1>Add Two Numbers</h1>
+    <form action="AddServlet" method="post">
+        <label for="num1">Number 1:</label>
+        <input type="text" id="num1" name="num1" required><br><br>
+        <label for="num2">Number 2:</label>
+        <input type="text" id="num2" name="num2" required><br><br>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
+```
+
+We will use a servlet to process this form data and return the sum of the two numbers.
+```javaimport java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/AddServlet")
+public class AddServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the numbers from the request
+        int num1 = Integer.parseInt(request.getParameter("num1"));
+        int num2 = Integer.parseInt(request.getParameter("num2"));
+        int sum = num1 + num2;
+
+        // Set the response content type
+        response.setContentType("text/html");
+
+        // Get the writer
+        PrintWriter out = response.getWriter();
+
+        // Generate the HTML response
+        out.println("<html><body>");
+        out.println("<h1>Result</h1>");
+        out.println("<p>The sum of " + num1 + " and " + num2 + " is " + sum + ".</p>");
+        out.println("</body></html>");
+    }
+}
+```
+
+You will also need to configure your `web.xml` if you are not using annotations:
+```xml
+<servlet>
+    <servlet-name>AddServlet</servlet-name>
+    <servlet-class>com.example.AddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>AddServlet</servlet-name>
+    <url-pattern>/AddServlet</url-pattern>
+</servlet-mapping>
+```
