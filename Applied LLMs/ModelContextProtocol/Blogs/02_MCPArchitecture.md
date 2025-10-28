@@ -3,6 +3,7 @@
 **MCP** operates through **three essential components** that work together seamlessly.
 See the diagram below:
 
+<img width="1456" height="872" alt="image" src="https://github.com/user-attachments/assets/ae9caa61-0654-4e8b-9bb0-3b188ffb334f" />
 
 ---
 
