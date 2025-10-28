@@ -61,6 +61,8 @@ For example:
 That’s it — the client asks, the server serves.
 This architecture underlies almost everything online — websites, apps, APIs, and even MCP.
 
+Refer to notes here [Client Server Architecture](/System%20Design/HLD/Architectural%20Patterns/01_ClientServerArchitecture.md)
+
 ---
 
 ## 🧠 How HTTP Works (and Why It’s Important)
