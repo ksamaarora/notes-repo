@@ -8,6 +8,8 @@
 
 The **Transport Layer** handles the **actual transmission of messages** between the MCP client and server.
 
+<img width="1456" height="806" alt="image" src="https://github.com/user-attachments/assets/80605e67-3774-4368-bf68-6c00459adefc" />
+
 For **local connections**, MCP uses **STDIO (standard input/output)**, where messages flow as simple **text streams** between processes on the same computer. This approach works perfectly when an MCP server runs on the same machine as the AI application, allowing for **fast, lightweight communication** without requiring network overhead.
 
 For **remote connections**, MCP employs **HTTP** for sending **requests** and **Server-Sent Events (SSE)** for receiving **responses**, enabling **secure and continuous communication** across networks and the internet. SSE allows the server to push updates or results back to the client in real time without requiring the client to repeatedly poll the server.
