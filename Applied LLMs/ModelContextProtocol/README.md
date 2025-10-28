@@ -68,6 +68,8 @@ Think of MCP as the **USB-C port for AI models**:
 
 ### 🧩 How It Works
 
+<img width="1102" height="886" alt="image" src="https://github.com/user-attachments/assets/40f71d90-1bf3-4bee-b6f4-80520e1dc0fd" />
+
 * The **MCP Server** hosts shared *context* (tools, prompts, data, etc.)
 * The **MCP Client** connects to the server and uses that context
 * The **Protocol** defines how both communicate reliably
@@ -75,6 +77,8 @@ Think of MCP as the **USB-C port for AI models**:
 ---
 
 ## 🖥️ MCP Components
+
+<img width="4950" height="2964" alt="image" src="https://github.com/user-attachments/assets/57788783-5ce7-4fca-8519-4fe2cc38a98b" />
 
 ### 1. MCP Client
 
