@@ -80,6 +80,8 @@ This is known as a **request–response model**.
 HTTP is simple, universal, and stateless —
 every request is independent and doesn’t remember what happened before.
 
+Refer to notes here [HTTP vs HTTPS](/System%20Design/HLD/Networking%20Fundamentals/HTTPvsHTTPS.md)
+
 ---
 
 ## 🌍 Why HTTP Was Revolutionary
@@ -156,6 +158,10 @@ Let’s understand each one simply:
 
 > SSE helps MCP maintain a *live connection* between model and tool —
 > perfect for dynamic or long-running tasks.
+
+Refer to notes here [Server Sent Events](/System%20Design/HLD/Asynchronous%20Communication/ServerSentEvents.md)
+
+Other Resources - [Rendering Patterns - CSR, SSR, SSG](/System%20Design/HLD/Architectural%20Patterns/02_RenderingPatterns.md)
 
 ---
 
