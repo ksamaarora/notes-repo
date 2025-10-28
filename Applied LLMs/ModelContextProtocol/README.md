@@ -1,3 +1,15 @@
+# Links:
+
+- [Official MCP Documentation](https://modelcontextprotocol.io/docs/getting-started/intro)
+
+- [MCP Course by Hugging Face](https://huggingface.co/learn/mcp-course/unit0/introduction)
+
+- [MCP: Build Rich-Context AI Apps with Anthropic](https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/)
+
+- [CampusX MCP Playlist](https://www.youtube.com/playlist?list=PLKnIA16_Rmva_oZ9F4ayUu9qcWgF7Fyc0)
+
+---
+
 # 🧠 Model Context Protocol (MCP) — Fundamentals
 
 ## 🔍 What Is a Model?
