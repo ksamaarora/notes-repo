@@ -8,4 +8,4 @@ This cheatsheet provides a quick reference to common Python syntax and operation
 [Tuples and Sets in Python](/part3.md)
 [Dictionaries in Python](/part4.md)
 
-[Maang Interview Questions in Python](/maang-part1-to-10.md)
+[Maang Interview Questions in Python](maang-part1-to-10.md)
