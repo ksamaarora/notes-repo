@@ -10,3 +10,5 @@ This cheatsheet provides a quick reference to common Python syntax and operation
 - [Maang Interview Questions in Python](maang-part1-to-10.md)
 - [More on Variables & Objects in Python](part5.md)
 - [Data Types in Python](part6.md)
+- [Operators in Python](part7.md)
+- [Part 8 to 12](part8-12.md)
