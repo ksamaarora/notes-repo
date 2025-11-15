@@ -1,8 +1,4 @@
-Here we go — I’ll turn your Part 1 notes into clean interview-oriented notes + practice questions. You can paste the next parts similarly and we’ll build a full Python sheet.
-
----
-
-## 🧩 Part 1: Variables & Strings in Python
+## Part 1: Variables & Strings in Python
 
 ### 1. Variables and Reassignment
 
